@@ -1,0 +1,14 @@
+# Invalid payloads
+title: app w/ invalid maintainer email
+version: 1.0.1
+maintainers: 
+- name: firstname lastname
+  email: apptwohotmail.com
+company: upbound inc.
+website: https://upbound.io
+source: https://github.com/upbound/repo
+license: apache-2.0
+description: |
+  ### blob of markdown
+  more markdown
+
