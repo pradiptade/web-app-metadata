@@ -21,9 +21,8 @@ func main() {
 
 // getMetadata: get the metadata in YAML format stored in-memory
 func getMetadata(c *gin.Context) {
-	fmt.Println("in getMetadata")
-	paramPairs := c.Request.URL.Query() //map[string][][string]
 
+	paramPairs := c.Request.URL.Query() //map[string][][string]
 	if len(paramPairs) == 0 {
 		c.IndentedJSON(http.StatusOK, metadata)
 	} else {
