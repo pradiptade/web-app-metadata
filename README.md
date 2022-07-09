@@ -21,7 +21,7 @@ curl http://localhost:8080/metadata -X POST -H 'Content-Type:application/yaml' -
 curl http://localhost:8080/metadata -X POST -H 'Content-Type:application/yaml' --data-binary @invalid-1.yml   
 curl http://localhost:8080/metadata -X POST -H 'Content-Type:application/yaml' --data-binary @invalid-2.yml  
 
-- TEST getMetadata:
+- TEST getMetadata:  
 -- Retrieve all the data  
 curl http://localhost:8080/metadata   
 
