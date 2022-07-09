@@ -11,6 +11,11 @@ This module implements two RESTful API endpoints to consume payloads passed in Y
 
   
 # TESTING
+
+## Using go "testing" package  
+The test cases are in metadata_test.go.  
+Execute: go test [-v]
+
 ## Using 'curl' from command line:
 - TEST postMetadata:   
 --  Input valid data  
