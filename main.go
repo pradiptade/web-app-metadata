@@ -15,21 +15,19 @@ func main() {
 	router := gin.Default()
 	router.GET("/metadata", getMetadata)
 	router.POST("/metadata", postMetadata)
-	//router.GET("/metadata", getDataByKey)
 	router.Run("localhost:8080")
 }
 
 // getMetadata: get the metadata in YAML format stored in-memory
 func getMetadata(c *gin.Context) {
-
 	paramPairs := c.Request.URL.Query() //map[string][][string]
 	if len(paramPairs) == 0 {
 		c.IndentedJSON(http.StatusOK, metadata)
 	} else {
-		fmt.Println("len of paramPairs:", len(paramPairs))
-		for key, values := range paramPairs {
-			fmt.Println("key, value(s) : ", key, values)
-		}
+		// fmt.Println("len of paramPairs:", len(paramPairs))
+		// for key, values := range paramPairs {
+		// 	fmt.Println("key, value(s) : ", key, values)
+		// }
 		res := searchInMetadata(paramPairs)
 		c.IndentedJSON(http.StatusOK, res)
 	}

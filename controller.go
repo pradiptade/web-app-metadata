@@ -75,6 +75,8 @@ func matchParameters(elem Metadata, urlQuerystr map[string][]string) bool {
 					return false
 				}
 			}
+		default: // param is invalid
+			return false
 		}
 	}
 	return true
