@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"regexp"
 	"strings"
+	"time"
 )
 
 func searchInMetadata(urlQuerystr map[string][]string) []Metadata {
@@ -82,14 +83,16 @@ func matchParameters(elem Metadata, urlQuerystr map[string][]string) bool {
 	return true
 }
 
-func processPayload(yml Metadata) (int, string) {
+func processPayload(yml Metadata, ch chan urlResponse) {
 	var statusCode int
 	var statusMsg string
+	//var result *urlResponse = new(urlResponse)
 
 	// Validate the data, and set the Status
 	if isValid, errorStr := validateRequest(&yml); !isValid {
 		statusCode = http.StatusBadRequest
 		statusMsg = errorStr
+		time.Sleep(10 * time.Second)
 	} else {
 		/*	check if payload exists in-memory
 			if exists: update the record
@@ -107,7 +110,7 @@ func processPayload(yml Metadata) (int, string) {
 			statusMsg = "Payload added."
 		}
 	}
-	return statusCode, statusMsg
+	ch <- urlResponse{statusCode, statusMsg}
 }
 
 func validateRequest(m *Metadata) (bool, string) {

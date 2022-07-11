@@ -36,8 +36,9 @@ func getMetadata(c *gin.Context) {
 // postMetadata: adds one application metadata received from YAML in the request body
 func postMetadata(c *gin.Context) {
 	var newYaml Metadata
-	var statusCode int
-	var statusMsg string
+	var result urlResponse
+	//var statusCode int
+	//var statusMsg string
 
 	// call BindYAML to receive the data
 	if err := c.BindYAML(&newYaml); err != nil {
@@ -45,8 +46,11 @@ func postMetadata(c *gin.Context) {
 		return
 	}
 
-	statusCode, statusMsg = processPayload(newYaml)
-	c.JSON(statusCode, statusMsg)
+	ch := make(chan urlResponse)
+	go processPayload(newYaml, ch)
+	result = <-ch
+
+	c.JSON(result.StatusCode, result.StatusMsg)
 }
 
 // func postMetadataV2(c *gin.Context) {

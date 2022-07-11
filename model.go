@@ -15,3 +15,8 @@ type Metadata struct {
 	Maintainers []MaintainerInfo `yaml:"maintainers" binding:"required"`
 	Description string           `yaml:"description"`
 }
+
+type urlResponse struct {
+	StatusCode int
+	StatusMsg  string
+}
