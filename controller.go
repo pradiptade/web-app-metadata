@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"regexp"
 	"strings"
-	"time"
 )
 
 func searchInMetadata(urlQuerystr map[string][]string) []Metadata {
@@ -92,7 +91,7 @@ func processPayload(yml Metadata, ch chan urlResponse) {
 	if isValid, errorStr := validateRequest(&yml); !isValid {
 		statusCode = http.StatusBadRequest
 		statusMsg = errorStr
-		time.Sleep(10 * time.Second)
+		//time.Sleep(10 * time.Second)
 	} else {
 		/*	check if payload exists in-memory
 			if exists: update the record
